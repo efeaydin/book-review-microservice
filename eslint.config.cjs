@@ -4,6 +4,7 @@ const tsParser = require('@typescript-eslint/parser');
 const importPlugin = require('eslint-plugin-import');
 const unusedImports = require('eslint-plugin-unused-imports');
 const eslintComments = require('eslint-plugin-eslint-comments');
+const prettierPlugin = require('eslint-plugin-prettier');
 
 module.exports = [
   {
@@ -29,6 +30,7 @@ module.exports = [
       import: importPlugin,
       'unused-imports': unusedImports,
       'eslint-comments': eslintComments,
+      prettier: prettierPlugin,
     },
     rules: {
       // TypeScript-specific
@@ -40,8 +42,8 @@ module.exports = [
       // General JS/TS best practices
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'error',
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
 
       // Import rules
       'import/order': [
@@ -69,6 +71,9 @@ module.exports = [
       // ESLint comment rules
       'eslint-comments/no-unlimited-disable': 'error',
       'eslint-comments/no-unused-disable': 'warn',
+
+      // Prettier integration
+      'prettier/prettier': 'error',
     },
   },
   {
@@ -93,8 +98,8 @@ module.exports = [
     rules: {
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'error',
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
 
       'import/order': [
         'error',
@@ -121,4 +126,4 @@ module.exports = [
       'eslint-comments/no-unused-disable': 'warn',
     },
   },
-]
+];
