@@ -1,12 +1,12 @@
 /** @type {import("eslint").FlatConfig[]} */
-const ts = require('@typescript-eslint/eslint-plugin');
-const tsParser = require('@typescript-eslint/parser');
-const importPlugin = require('eslint-plugin-import');
-const unusedImports = require('eslint-plugin-unused-imports');
-const eslintComments = require('eslint-plugin-eslint-comments');
-const prettierPlugin = require('eslint-plugin-prettier');
+import ts from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
+import eslintComments from 'eslint-plugin-eslint-comments';
+import prettierPlugin from 'eslint-plugin-prettier';
 
-module.exports = [
+export default [
   {
     ignores: ['node_modules', 'dist'],
   },
@@ -19,10 +19,7 @@ module.exports = [
         sourceType: 'module',
       },
       globals: {
-        require: 'readonly',
         process: 'readonly',
-        module: 'readonly',
-        __dirname: 'readonly',
       },
     },
     plugins: {
