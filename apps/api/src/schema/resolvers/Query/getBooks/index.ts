@@ -1,5 +1,5 @@
-import { books } from './data.js';
+import { bookModel } from 'book-review-package-db';
 
-export default () => {
-  return books;
+export default async () => {
+  return bookModel.find();
 };
