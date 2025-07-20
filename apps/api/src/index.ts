@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import { createYoga } from 'graphql-yoga';
 import { schema } from './schema/index.js';
 
-import { connectDB, bookModel } from 'book-review-package-db';
+import { connectDB } from 'book-review-package-db';
 
 const yoga = createYoga({ schema });
 

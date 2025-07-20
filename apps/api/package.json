@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "dotenv -e .env.dev tsx src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "dotenv -e .env.dev node dist/index.js",
+    "start-docker": "dotenv -e .env.docker.dev node dist/index.js"
   },
   "dependencies": {
     "book-review-package-db": "workspace:*",

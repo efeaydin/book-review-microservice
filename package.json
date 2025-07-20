@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build:packages": "pnpm --filter \"./packages/*\" run build",
+    "build:api": "docker build -t book-review-api --build-arg APP_NAME=api .",
+    "start:api": "docker run -p 4000:4000 book-review-api",
+    "dev:api": "pnpm run build:api && pnpm run start:api"
   },
   "keywords": [],
   "author": "",
