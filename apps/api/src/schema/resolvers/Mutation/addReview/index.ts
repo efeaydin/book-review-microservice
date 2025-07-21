@@ -8,7 +8,19 @@ type AddReviewArgs = {
   };
 };
 
-export default async (_: unknown, { bookId, review }: AddReviewArgs) => {
+type AddReviewResult =
+  | {
+      success: true;
+      resourceId: string;
+    }
+  | {
+      success: false;
+      message: string;
+      resourceId: null;
+      errorCode: string;
+    };
+
+export default async (_: unknown, { bookId, review }: AddReviewArgs): Promise<AddReviewResult> => {
   const bookExists = await bookModel.exists({ _id: bookId });
 
   if (!bookExists) {
@@ -35,7 +47,7 @@ export default async (_: unknown, { bookId, review }: AddReviewArgs) => {
   };
 };
 
-const addPendingReviewJob = async (data: { pendingReviewId: string }) => {
+const addPendingReviewJob = async (data: { pendingReviewId: string }): Promise<void> => {
   await reviewQueue.add('processPendingReview', data, {
     delay: 0, // you can delay job start (ms)
     attempts: 3, // retry up to 3 times on failure

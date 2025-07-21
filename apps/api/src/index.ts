@@ -1,14 +1,15 @@
 import { createServer } from 'node:http';
-import { createYoga } from 'graphql-yoga';
-import { schema } from './schema/index.js';
 
 import { connectDB } from 'book-review-package-db';
+import { createYoga } from 'graphql-yoga';
+
+import { schema } from './schema/index.js';
 
 const yoga = createYoga({ schema });
 
 const server = createServer(yoga);
 
-async function main() {
+async function main(): Promise<void> {
   const MONGO_URI = process.env.MONGO_URI;
 
   if (!MONGO_URI) {
@@ -18,7 +19,7 @@ async function main() {
   await connectDB(MONGO_URI);
 
   server.listen(4000, () => {
-    console.log('🚀 GraphQL API ready at http://localhost:4000/graphql');
+    console.warn('🚀 GraphQL API ready at http://localhost:4000/graphql');
   });
 }
 

@@ -1,7 +1,6 @@
+import { connectDB, pendingReviewModel, reviewModel } from 'book-review-package-db';
 import { Worker } from 'bullmq';
 import { Redis } from 'ioredis';
-
-import { connectDB, pendingReviewModel, reviewModel } from 'book-review-package-db';
 
 const connection = new Redis({
   host: process.env.REDIS_HOST,
@@ -11,7 +10,7 @@ const connection = new Redis({
   family: 0,
 });
 
-async function startWorker() {
+async function startWorker(): Promise<void> {
   try {
     const MONGO_URI = process.env.MONGO_URI;
 
@@ -39,7 +38,7 @@ async function startWorker() {
 
         await review.save();
 
-        console.log(`✅ Done processing review ${pendingReviewId}`);
+        console.warn(`✅ Done processing review ${pendingReviewId}`);
       },
       { connection },
     );
@@ -48,7 +47,7 @@ async function startWorker() {
       console.error(`❌ Job ${job?.id} failed:`, err);
     });
 
-    console.log('🚀 Review worker is up and waiting for jobs...');
+    console.warn('🚀 Review worker is up and waiting for jobs...');
   } catch (error) {
     console.error('❌ Failed to connect DB or start worker:', error);
   }

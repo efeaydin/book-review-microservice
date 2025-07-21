@@ -1,14 +1,14 @@
 /** @type {import("eslint").FlatConfig[]} */
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import importPlugin from 'eslint-plugin-import';
-import unusedImports from 'eslint-plugin-unused-imports';
 import eslintComments from 'eslint-plugin-eslint-comments';
+import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
+import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
   {
-    ignores: ['node_modules', 'dist'],
+    ignores: ['node_modules', '**/dist/**'],
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
