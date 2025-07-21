@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "target": "ES2020",
+    "types": ["jest", "node"]
+  },
+  "include": ["**/*.test.ts", "**/__tests__/**/*.ts"]
+}
