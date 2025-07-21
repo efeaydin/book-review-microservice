@@ -10,7 +10,10 @@
     "build:packages": "pnpm --filter \"./packages/*\" run build",
     "build:api": "docker build -t book-review-api --build-arg APP_NAME=api .",
     "start:api": "docker run -p 4000:4000 book-review-api",
-    "dev:api": "pnpm run build:api && pnpm run start:api"
+    "dev:api": "pnpm run build:api && pnpm run start:api",
+    "build:worker": "docker build -t book-review-worker --build-arg APP_NAME=worker .",
+    "start:worker": "docker run book-review-worker",
+    "dev:worker": "pnpm run build:worker && pnpm run start:worker"
   },
   "keywords": [],
   "author": "",
