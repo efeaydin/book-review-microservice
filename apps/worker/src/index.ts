@@ -4,7 +4,7 @@ import { Redis } from 'ioredis';
 import { connectDB, pendingReviewModel, reviewModel } from 'book-review-package-db';
 
 const connection = new Redis({
-  host: 'host.docker.internal',
+  host: process.env.REDIS_HOST,
   port: 6379,
   password: process.env.REDIS_PASSWORD,
   maxRetriesPerRequest: null,
