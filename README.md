@@ -43,10 +43,12 @@ Each app (`api`, `worker`) requires its own `.env` file.
 
 Example `.env` contents (shared by both apps):
 
+```
 MONGO_URI=mongodb://localhost:27017/book-review
 REDIS_HOST=redis://localhost:6379
 REDIS_PASSWORD=\*\*\* # Optional
-PORT=4000 # Only required for API
+```
+
 You should place these files inside the following directories:
 
 apps/api/.env.dev — for running the API locally
@@ -58,11 +60,23 @@ Make sure to load the appropriate file based on your environment (dev or docker)
 🚀 Run Instructions
 
 Run API Server (GraphQL)
+
+```
 pnpm dev:api
+```
+
 GraphQL Playground will be available at: http://localhost:4000/graphql
 
+✅ Already deployed:
+You can access the live production API here:
+👉 https://app-production-7cd1.up.railway.app/graphql
+
 Run Worker
+
+```
 pnpm dev:worker
+```
+
 This will start the background processor that consumes jobs from the BullMQ queue and appends a static string to submitted reviews.
 
 🧪 Testing
@@ -71,16 +85,26 @@ Unit tests are implemented using Jest, specifically for the addReview GraphQL mu
 
 To run tests:
 
+```
 pnpm test
+```
 
 🐳 Docker Instructions
 
 This monorepo uses a generic root-level Dockerfile that can be used to build any app in the apps/ folder using the APP_NAME build argument.
 
 Build API Docker Image
+
+```
 docker build --build-arg APP_NAME=api -t book-api .
+```
+
 Build Worker Docker Image
+
+```
 docker build --build-arg APP_NAME=worker -t book-worker .
+```
+
 You can optionally create a docker-compose.yml to orchestrate MongoDB, Redis, API, and Worker containers together.
 
 📐 Design Decisions
@@ -109,7 +133,3 @@ MIT License — feel free to use and adapt for your own projects.
 👨‍💻 Author Notes
 
 This project was implemented as part of a Senior Platform Engineer (GraphQL) assignment. All design decisions were made with modularity, scalability, and demonstration of core backend architecture skills in mind.
-
-```
-
-```
