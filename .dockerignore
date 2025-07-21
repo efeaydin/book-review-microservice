@@ -1,2 +1,8 @@
 **/node_modules
 **/dist
+
+**/__tests__/
+**/*.test.ts
+**/*.spec.ts
+jest.config.ts
+coverage/
