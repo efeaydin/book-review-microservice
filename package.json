@@ -7,6 +7,7 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "build:packages": "pnpm --filter \"./packages/*\" run build",
     "build:api": "docker build -t book-review-api --build-arg APP_NAME=api .",
     "start:api": "docker run -p 4000:4000 book-review-api",

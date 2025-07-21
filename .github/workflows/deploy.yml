@@ -1,19 +1,45 @@
-name: Build & Push Docker Images
+name: Lint, Test, Build & Push Docker Images
 
 on:
   workflow_dispatch:
     inputs:
       app:
-        description: "App name to build"
+        description: 'App name to build'
         required: true
         type: string
       version:
-        description: "Version to tag the Docker image"
+        description: 'Version to tag the Docker image'
         required: true
         type: string
 
 jobs:
-  build:
+  quality-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check Prettier formatting
+        run: pnpm format:check
+
+      - name: Run ESLint
+        run: pnpm lint
+
+      - name: Run Tests
+        run: pnpm test
+
+  build-and-push:
+    needs: quality-check
     runs-on: ubuntu-latest
     permissions:
       contents: read
