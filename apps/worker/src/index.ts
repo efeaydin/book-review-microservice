@@ -8,6 +8,7 @@ const connection = new Redis({
   port: 6379,
   password: process.env.REDIS_PASSWORD,
   maxRetriesPerRequest: null,
+  family: 0,
 });
 
 async function startWorker() {
